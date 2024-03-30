@@ -35,10 +35,6 @@ public class PlayerMovement : MonoBehaviour
         _animation.SetBool("Grounded",IsGrounded());
         if (_wallJumpCooldown > 0.2f)
         {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                Jump();
-            }
             _body.velocity = new Vector2(_horizontalInput*speed,_body.velocity.y);
             if (OnWall() && !IsGrounded())
             {
@@ -83,11 +79,6 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        
-    }
-
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
@@ -97,5 +88,10 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size, 0, new Vector2(transform.localScale.x,0), 0.1f, wallLayer);
         return raycastHit.collider != null;
+    }
+
+    public bool CanAttack()
+    {
+        return _horizontalInput == 0 && IsGrounded() && !OnWall();
     }
 }
