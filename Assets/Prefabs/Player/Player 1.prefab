@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 5235485302235884599}
   - component: {fileID: 3058430469855458020}
   - component: {fileID: 6100123981412289799}
+  - component: {fileID: 7707669024906466338}
   m_Layer: 10
   m_Name: Player 1
   m_TagString: Player
@@ -574,3 +575,16 @@ MonoBehaviour:
   playerHealth: {fileID: 3058430469855458020}
   totalHealthBar: {fileID: 0}
   currentHealthBar: {fileID: 0}
+--- !u!114 &7707669024906466338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730994709831911773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b049354f8e19242ac5f9d7b5d111aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointSound: {fileID: 8300000, guid: 9d0eb85b5dfe67842b530c3ed0867372, type: 3}
