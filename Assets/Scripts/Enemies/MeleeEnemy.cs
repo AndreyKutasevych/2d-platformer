@@ -9,6 +9,8 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float colliderDistance;
+    [SerializeField] private AudioClip swordSound;
+    [Header("Sounds")]
     private Enemy_patrol _enemyPatrol;
     private Health _playerHealth;
     private float _cooldownTimer=Mathf.Infinity;
@@ -25,6 +27,7 @@ public class MeleeEnemy : MonoBehaviour
         _cooldownTimer += Time.deltaTime;
         if (PlayerInSight() && _cooldownTimer >= attackCooldown)
         {
+            SoundManager.Instance.PlaySound(swordSound);
             _cooldownTimer = 0;
             _anim.SetTrigger("melee_attack");
         }

@@ -178,3 +178,4 @@ MonoBehaviour:
   checkDelay: 1
   speed: 1
   range: 16
+  hitSound: {fileID: 8300000, guid: 8d9fcec744f58534ba844970c3b7e1b2, type: 3}

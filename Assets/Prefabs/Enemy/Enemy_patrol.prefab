@@ -258,6 +258,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   colliderDistance: 0.4
+  swordSound: {fileID: 8300000, guid: 4aebdceb98e356041b8b0c5438872a74, type: 3}
 --- !u!114 &2305546524206376306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +277,8 @@ MonoBehaviour:
   components:
   - {fileID: 5787914522588747632}
   - {fileID: 5441029501282608651}
+  damageSound: {fileID: 8300000, guid: 9457e2f52da88944eb5699a49c31d105, type: 3}
+  deathSound: {fileID: 8300000, guid: ed60ccfedd1eccf46a0cfc4e53260ab5, type: 3}
 --- !u!1 &5153655845426859916
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class FirePoint : MonoBehaviour
     [SerializeField] private float activationDelay;
     [SerializeField] private float activeTime;
     [SerializeField] private float damage;
+    [SerializeField] private AudioClip fireSound;
     private Animator _animator;
     private SpriteRenderer _sprite;
     private bool _active;
@@ -43,6 +44,7 @@ public class FirePoint : MonoBehaviour
         _animator.SetBool("Activated",true);
         Physics2D.IgnoreLayerCollision(10,11,false);
         _active = true;
+        SoundManager.Instance.PlaySound(fireSound);
         _sprite.color=Color.white;
         yield return new WaitForSeconds(activeTime);
         _active = false;

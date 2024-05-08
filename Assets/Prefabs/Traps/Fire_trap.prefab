@@ -168,3 +168,4 @@ MonoBehaviour:
   activationDelay: 2
   activeTime: 2
   damage: 1
+  fireSound: {fileID: 8300000, guid: d513d772ec4178349b53b91915d418bf, type: 3}

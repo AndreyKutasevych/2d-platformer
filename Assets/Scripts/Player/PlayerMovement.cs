@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
+    [SerializeField] private AudioClip jumpSound;
 
     private void Awake()
     {
@@ -48,6 +49,10 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 Jump();
+                if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+                {
+                    SoundManager.Instance.PlaySound(jumpSound);
+                }
             }
         }
         else

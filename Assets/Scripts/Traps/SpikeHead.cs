@@ -11,6 +11,7 @@ public class SpikeHead : Enemy_damage
     private float _checkTimer;
     [SerializeField] private float speed;
     [SerializeField] private float range;
+    [SerializeField] private AudioClip hitSound;
 
     private void Update()
     {
@@ -67,6 +68,7 @@ public class SpikeHead : Enemy_damage
         if (other.tag != "Player")
         {
             Stop();
+            SoundManager.Instance.PlaySound(hitSound);
         }
     }
 }
