@@ -1,60 +1,74 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class Health : MonoBehaviour
 {
-    [Header("Health")]
+    [Header ("Health")]
     [SerializeField] private float startingHealth;
-    private Animator _animator;
-    private bool _isDead;
     public float CurrentHealth { get; private set; }
-    [SerializeField] [Header("Iframes")] private float invulnerabilityDuration;
-    [SerializeField] private float flashesAmount;
-    private SpriteRenderer _spriteRenderer;
+    private Animator _anim;
+    private bool _dead;
+
+    [Header("iFrames")]
+    [SerializeField] private float iFramesDuration;
+    [SerializeField] private int numberOfFlashes;
+    private SpriteRenderer _spriteRend;
+
+    [Header("Components")]
+    [SerializeField] private Behaviour[] components;
+    private bool _invulnerable;
 
     private void Awake()
     {
         CurrentHealth = startingHealth;
-        _animator = GetComponent<Animator>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
+        _spriteRend = GetComponent<SpriteRenderer>();
     }
-
-    public void TakeDamage(float damage)
+    public void TakeDamage(float _damage)
     {
-        CurrentHealth = Mathf.Clamp(CurrentHealth - damage,0,startingHealth);
+        if (_invulnerable) return;
+        CurrentHealth = Mathf.Clamp(CurrentHealth - _damage, 0, startingHealth);
+
         if (CurrentHealth > 0)
         {
-            _animator.SetTrigger("Hurt");
-            StartCoroutine(Invulnerability());
-
+            _anim.SetTrigger("Hurt");
+            StartCoroutine(Invunerability());
         }
         else
         {
-            if(!_isDead)
+            if (!_dead)
             {
-                GetComponent<PlayerMovement>().enabled = false;
-                _isDead = true;
-                _animator.SetTrigger("Dead");
+                _anim.SetTrigger("Dead");
+
+                //Deactivate all attached component classes
+                foreach (Behaviour component in components)
+                    component.enabled = false;
+
+                _dead = true;
             }
-            
         }
     }
-
-    public void ReplenishHealth(float hitPoint)
+    public void ReplenishHealth(float value)
     {
-        CurrentHealth = Mathf.Clamp(CurrentHealth + hitPoint,0,startingHealth);
+        CurrentHealth = Mathf.Clamp(CurrentHealth + value, 0, startingHealth);
     }
-
-    private IEnumerator Invulnerability()
+    private IEnumerator Invunerability()
     {
-        Physics2D.IgnoreLayerCollision(10,11,true);
-        for (int i = 0; i < flashesAmount; i++)
+        _invulnerable = true;
+        Physics2D.IgnoreLayerCollision(10, 11, true);
+        for (int i = 0; i < numberOfFlashes; i++)
         {
-            _spriteRenderer.color = new Color(1, 0, 0,0.5f);
-            yield return new WaitForSeconds(invulnerabilityDuration/flashesAmount/2);
-            _spriteRenderer.color = Color.white;
-            yield return new WaitForSeconds(invulnerabilityDuration/flashesAmount/2);
+            _spriteRend.color = new Color(1, 0, 0, 0.5f);
+            yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
+            _spriteRend.color = Color.white;
+            yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
         }
-        Physics2D.IgnoreLayerCollision(10,11,false);
+        Physics2D.IgnoreLayerCollision(10, 11, false);
+        _invulnerable = false;
+    }
+
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }
