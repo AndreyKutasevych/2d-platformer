@@ -6,16 +6,25 @@ public class PlayerRespawn : MonoBehaviour
     [SerializeField] private AudioClip checkpointSound;
     private Transform _currentCheckpoint;
     private Health _playerHealth;
+    private UImanager _uiManager;
 
     private void Awake()
     {
         _playerHealth = GetComponent<Health>();
+        _uiManager = FindObjectOfType<UImanager>();
     }
 
-    public void Respawn()
+    public void CheckRespawn()
     {
-        transform.position = _currentCheckpoint.position;
-        _playerHealth.Respawn();
+        if (_currentCheckpoint == null)
+        {
+            _uiManager.GameOver();
+        }
+        else
+        {
+            transform.position = _currentCheckpoint.position;
+            _playerHealth.Respawn();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
