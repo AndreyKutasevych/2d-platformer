@@ -44,7 +44,7 @@ public class SoundManager : MonoBehaviour
         {
             currentVolume = 0;
         }
-        else if (currentVolume <= 0)
+        else if (currentVolume < 0)
         {
             currentVolume = 1;
         }

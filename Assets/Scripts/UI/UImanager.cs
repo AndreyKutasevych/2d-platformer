@@ -1,4 +1,3 @@
-using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -10,12 +9,17 @@ public class UImanager : MonoBehaviour
     [Header("Pause Menu")]
     [SerializeField] private GameObject pauseScreen;
 
+    [Header("Main Menu")] 
+    [SerializeField] private GameObject mainMenuScreen;
+    
+
     #region gameOver
 
     private void Awake()
     {
         gameOverScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void GameOver()
@@ -46,14 +50,7 @@ public class UImanager : MonoBehaviour
     private void PauseGame(bool status)
     {
         pauseScreen.SetActive(status);
-        if (status)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+        Time.timeScale = status ? 0 : 1;
     }
 
     public void Resume()

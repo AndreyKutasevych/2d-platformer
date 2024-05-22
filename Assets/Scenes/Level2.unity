@@ -679,11 +679,6 @@ Transform:
   - {fileID: 1433972766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &233534823 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9123370933935873004, guid: 0a2258101b7703946a0ca9d5c27c959d, type: 3}
-  m_PrefabInstance: {fileID: 1628620837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &352139188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1149,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
-  player: {fileID: 233534823}
+  player: {fileID: 782007460}
 --- !u!1 &565085417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,6 +1907,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &782007460 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1997982696601950391, guid: 0a2258101b7703946a0ca9d5c27c959d, type: 3}
+  m_PrefabInstance: {fileID: 1628620837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &807100886
 GameObject:
   m_ObjectHideFlags: 0
